@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation Child Rescue - Clinton Oh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background-color: #ffffff;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: linear-gradient(135deg, #1a365d 0%, #2d5aa0 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: #f56565;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a365d 0%, #2d5aa0 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .mission-statement {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #f56565;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 101, 101, 0.6);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a365d;
+        }
+
+        .mission-section {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mission-text h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-image {
+            text-align: center;
+        }
+
+        .mission-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #f56565;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .how-to-help {
+            background: white;
+        }
+
+        .help-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .help-card {
+            background: linear-gradient(135deg, #1a365d 0%, #2d5aa0 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .help-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .help-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .help-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .founder-section {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .founder-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .founder-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .founder-text h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #2d5aa0;
+            border-left: 4px solid #f56565;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .mission-content,
+            .founder-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Clinton Oh</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Clinton</a></li>
+            <li><a href="coaching.html">Coaching</a></li>
+            <li><a href="franchising.html">Franchising</a></li>
+            <li><a href="mymanager.html">MyManager CRM</a></li>
+            <li><a href="philanthropy.html" class="active">Operation Child Rescue</a></li>
+            <li><a href="blog.html">Blog & News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Operation Child Rescue</h1>
+        <p class="subtitle">501(c)(3) Non-Profit Organization</p>
+        <p class="mission-statement">Join our mission to provide 1 million meals to children all over the world in need. Together, we can transform lives and create hope for the most vulnerable children globally.</p>
+        <a href="#donate" class="btn">Donate Now</a>
+    </section>
+
+    <section class="section mission-section">
+        <div class="container">
+            <h2 class="section-title">Our Mission</h2>
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h3>Transforming Lives Through Giving</h3>
+                    <p>Operation CR Inc, is a tax-exempt (501c3), not-for-profit corporation organized and operated exclusively for charitable purposes. We believe that every child deserves access to proper nutrition and care.</p>
+                    <p>Growing up in a Martial Arts and Christian based home, the concept of giving was always part of my traditions. We started out in our franchise by raising over 100K dollars for St. Judes Children's hospital and many other organizations.</p>
+                    <p>Teaching our community that giving is also part of growth, we established Operation Child Rescue in efforts to give back to the world.</p>
+                </div>
+                <div class="mission-image">
+                    <img src="https://lirp.cdn-website.com/7e69d783/dms3rep/multi/opt/Family-977w.jpg" alt="Children in need">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Impact</h2>
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <span class="stat-number">250K+</span>
+                    <span class="stat-label">Meals Provided</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Countries Served</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Children Helped</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">1M</span>
+                    <span class="stat-label">Goal: Meals Target</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section how-to-help">
+        <div class="container">
+            <h2 class="section-title">How You Can Help</h2>
+            <div class="help-cards">
+                <div class="help-card">
+                    <h3>Monthly Donation</h3>
+                    <p>Provide consistent support with a monthly contribution. Just $25 can feed a child for an entire month.</p>
+                    <a href="#monthly" class="btn">Start Monthly Giving</a>
+                </div>
+                <div class="help-card">
+                    <h3>One-Time Donation</h3>
+                    <p>Make an immediate impact with a one-time donation. Every dollar goes directly to feeding children in need.</p>
+                    <a href="#onetime" class="btn">Donate Once</a>
+                </div>
+                <div class="help-card">
+                    <h3>Corporate Partnership</h3>
+                    <p>Partner with us through your business. Create lasting change while building corporate social responsibility.</p>
+                    <a href="#corporate" class="btn">Learn More</a>
+                </div>
+                <div class="help-card">
+                    <h3>Volunteer</h3>
+                    <p>Join our volunteer network. Help us organize events, spread awareness, and make a hands-on difference.</p>
+                    <a href="#volunteer" class="btn">Volunteer Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section founder-section">
+        <div class="container">
+            <h2 class="section-title">Message from Our Founder</h2>
+            <div class="founder-content">
+                <div class="founder-image">
+                    <img src="https://lirp.cdn-website.com/7e69d783/dms3rep/multi/opt/clinton-1920w.png" alt="Clinton Oh">
+                </div>
+                <div class="founder-text">
+                    <h3>Clinton Oh</h3>
+                    <p>As a seasoned entrepreneur and CEO of multiple franchise companies, I've been blessed with success in business. But true fulfillment comes from giving back to those who need it most.</p>
+                    
+                    <div class="quote">
+                        "Teaching our community that giving is also part of growth - this philosophy drives everything we do at Operation Child Rescue."
+                    </div>
+                    
+                    <p>Through my various business ventures including Next Level Media and the Be Aligned coaching program, I've learned that success isn't just measured by profit, but by the positive impact we make in the world.</p>
+                    
+                    <p>Operation Child Rescue represents our commitment to ensuring no child goes hungry. Together, we can reach our goal of providing 1 million meals to children worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Operation Child Rescue. All rights reserved. | 501(c)(3) Tax-Exempt Organization</p>
+            <p>Founded by Clinton Oh | Entrepreneur, Consultant & Investor Transforming Dreams Into Reality</p>
+        </div>
+    </footer>
+</body>
+</html>
