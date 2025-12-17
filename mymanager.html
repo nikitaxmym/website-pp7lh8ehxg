@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyManager CRM - Clinton Oh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2d3748;
+            background: #ffffff;
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: #1a365d;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #f56565;
+            color: #ffffff;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1a365d 0%, #2d5aa0 100%);
+            color: #ffffff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #f56565;
+            color: #ffffff;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245,101,101,0.3);
+        }
+
+        .cta-button:hover {
+            background: #e53e3e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245,101,101,0.4);
+        }
+
+        .features-section {
+            padding: 5rem 2rem;
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2d5aa0, #f56565);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .benefits-section {
+            padding: 5rem 2rem;
+            background: #ffffff;
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .benefits-content {
+            padding: 2rem 0;
+        }
+
+        .benefits-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .benefits-list li {
+            padding: 0.75rem 0;
+            color: #2d3748;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .benefits-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #f56565;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .benefits-image {
+            text-align: center;
+        }
+
+        .benefits-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .pricing-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: #ffffff;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #f56565;
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f56565;
+            color: #ffffff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2d5aa0;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: #2d3748;
+        }
+
+        .footer {
+            background: #1a365d;
+            color: #ffffff;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #f56565;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d5aa0;
+            padding-top: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .benefits-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .navbar {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Clinton Oh</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Clinton</a></li>
+            <li><a href="coaching.html">Coaching</a></li>
+            <li><a href="franchising.html">Franchising</a></li>
+            <li><a href="mymanager.html" class="active">MyManager CRM</a></li>
+            <li><a href="philanthropy.html">Operation Child Rescue</a></li>
+            <li><a href="blog.html">Blog & News</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">MyManager CRM</h1>
+            <p class="hero-subtitle">Groundbreaking CRM & Marketing Tool</p>
+            <p class="hero-description">
+                Clinton's latest venture, mymanager.com, is a groundbreaking CRM and marketing tool engineered to save time and empower businesses of all sizes to achieve their goals efficiently. Transform your business operations with modern technology that revolutionizes how you manage customers, leads, and growth.
+            </p>
+            <a href="#features" class="cta-button">Explore Features</a>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <h2 class="section-title">Powerful Features for Modern Businesses</h2>
+        <p class="section-subtitle">Everything you need to manage, grow, and scale your business in one comprehensive platform</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Lead Management</h3>
+                <p class="feature-description">Capture, track, and nurture leads with intelligent automation. Never lose a potential customer again with our comprehensive lead tracking system.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Advanced Analytics</h3>
+                <p class="feature-description">Get deep insights into your business performance with real-time dashboards and customizable reports that help you make data-driven decisions.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">Marketing Automation</h3>
+                <p class="feature-description">Automate your marketing campaigns across multiple channels. Email, SMS, and social media marketing made simple and effective.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3 class="feature-title">Customer Management</h3>
+                <p class="feature-description">Build stronger relationships with comprehensive customer profiles, interaction history, and personalized communication tools.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Time-Saving Tools</h3>
+                <p class="feature-description">Streamline repetitive tasks with smart automation workflows. Focus on what matters most while MyManager handles the routine work.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Mobile Ready</h3>
+                <p class="feature-description">Access your business data anywhere, anytime. Full mobile optimization ensures you're always connected to your business operations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="benefits-container">
+            <div class="benefits-content">
+                <h2 class="benefits-title">Why Choose MyManager CRM?</h2>
+                <ul class="benefits-list">
+                    <li>Save 10+ hours per week on administrative tasks</li>
+                    <li>Increase lead conversion rates by up to 40%</li>
+                    <li>Integrate seamlessly with your existing tools</li>
+                    <li>Scale from startup to enterprise without limits</li>
+                    <li>Get dedicated support from Clinton's expert team</li>
+                    <li>Access cutting-edge technology at an affordable price</li>
+                    <li>Customize workflows to match your business needs</li>
+                    <li>Enjoy regular updates and new feature releases</li>
+                </ul>
+                <a href="#pricing" class="cta-button">View Pricing Plans</a>
+            </div>
+            <div class="benefits-image">
+                <img src="https://lirp.cdn-website.com/7e69d783/dms3rep/multi/opt/clinton-1920w.png" alt="Clinton Oh - MyManager CRM Founder">
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <h2 class="section-title">Choose Your Plan</h2>
+        <p class="section-subtitle">Flexible pricing options designed to grow with your business</p>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="pricing-title">Starter</h3>
+                <div class="pricing-price">$29</div>
+                <p class="pricing-period">per month</p>
+                <ul class="pricing-features">
+                    <li>Up to 1,000 contacts</li>
+                    <li>Basic CRM features</li>
+                    <li>Email marketing</li>
+                    <li>Mobile app access</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Get Started</a>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Most Popular</div>
+                <h3 class="pricing-title">Professional</h3>
+                <div class="pricing-price">$79</div>
+                <p class="pricing-period">per month</p>
+                <ul class="pricing-features">
+                    <li>Up to 10,000 contacts</li>
+                    <li>Advanced CRM features</li>
+                    <li>Marketing automation</li>
+                    <li>Custom workflows</li>
+                    <li>Analytics & reporting</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Get Started</a>
+            </div>
+            
+            <div class="pricing-card">
+                <h3 class="pricing-title">Enterprise</h3>
+                <div class="pricing-price">$199</div>
+                <p class="pricing-period">per month</p>
+                <ul class="pricing-features">
+                    <li>Unlimited contacts</li>
+                    <li>All premium features</li>
+                    <li>Custom integrations</li>
+                    <li>Dedicated account manager</li>
+                    <li>Advanced security</li>
+                    <li>24/7 phone support</li>
+                </ul>
+                <a href="contact.html" class="cta-button">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Clinton</a>
+                <a href="coaching.html">Coaching</a>
+                <a href="franchising.html">Franchising</a>
+                <a href="mymanager.html">MyManager CRM</a>
+                <a href="philanthropy.html">Operation Child Rescue</a>
+                <a href="blog.html">Blog & News</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Clinton Oh. All rights reserved. | Entrepreneur, Consultant & Investor Transforming Dreams Into Reality</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
